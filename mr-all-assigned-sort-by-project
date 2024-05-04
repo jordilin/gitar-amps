@@ -12,4 +12,16 @@ if [ $# -eq 0 ]; then
     usage
 fi
 
-gr my mr "$@" --no-headers | awk -F'|' '{print $4"|"$0}' | sort -k1 | cut -d'|' -f2-
+# gather number of pages to retrieve
+num_pages=$(gr my mr "$1" --num-pages)
+
+from_page=1
+to_page="$num_pages"
+
+if [ "$num_pages" -eq 1 ]; then
+    gr my mr "$1" --no-headers | awk -F'|' '{print $4"|"$0}' | sort -k1 | cut -d'|' -f2-
+else
+    echo "Number of pages found: $num_pages" 1>&2
+    echo "Retrieving pages $from_page to $to_page in verbose mode and throttling 1 sec" 1>&2
+    gr my mr -r -v --from-page="$from_page" --to-page="$to_page" --throttle 1000 "$1" --no-headers | awk -F'|' '{print $4"|"$0}' | sort -k1 | cut -d'|' -f2-
+fi
