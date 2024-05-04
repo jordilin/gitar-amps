@@ -1,0 +1,6 @@
+#!/bin/sh
+
+# Open a merge request in `origin` with fetch and rebase
+
+default_branch=$(gr pj info --no-headers | awk -F'|' '{print $2}')
+gr mr create --fetch origin --rebase "origin/$default_branch" "$@"
