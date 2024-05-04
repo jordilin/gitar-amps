@@ -1,0 +1,44 @@
+#!/bin/sh
+
+# Looks good to me (LGTM) script. Comment LGTM, approve and merge PRs.
+
+usage() {
+    echo "Looks good to me (LGTM) script. Comment LGTM, approve and merge PRs."
+    echo "Usage: $0 --merge <id>"
+    echo "  --merge: Automatically merge (optional)"
+    echo "  id: Merge request ID"
+    exit 1
+}
+
+for arg in "$@"; do
+    if [ "$arg" = "--help" ] || [ "$arg" = "-h" ]; then
+        usage
+    fi
+done
+
+# Check number of arguments
+if ! { [ "$#" -eq 1 ] || [ "$#" -eq 2 ]; }; then
+    usage
+fi
+
+if [ "$1" = "--merge" ]; then
+    if [ "$#" -ne 2 ]; then
+        usage
+    fi
+    merge_id=$2
+else
+    merge_id=$1
+fi
+
+remote_url=$(git remote -v | awk '/fetch/{print $2}')
+
+gr mr comment --id "$merge_id" "LGTM"
+
+if [ "${remote_url#*github}" = "$remote_url" ]; then
+    # Not Github - assume Gitlab
+    gr mr approve "$merge_id"
+fi
+
+if [ "$1" = "--merge" ]; then
+    gr mr merge "$merge_id"
+fi
