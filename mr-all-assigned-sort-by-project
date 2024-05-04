@@ -1,0 +1,15 @@
+#!/bin/sh
+
+# Gather all my assigned Merge requests in the given state sorted by project
+
+usage() {
+    echo "Usage: $0 <state>"
+    echo "  state: opened, closed, locked, merged"
+    exit 1
+}
+
+if [ $# -eq 0 ]; then
+    usage
+fi
+
+gr my mr "$@" --no-headers | awk -F'|' '{print $4"|"$0}' | sort -k1 | cut -d'|' -f2-
