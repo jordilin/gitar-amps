@@ -3,6 +3,7 @@
 ![GitAR-Amps](./logo.svg)
 
 - [GitAR-Amps - Git All Remotes Amplifiers](#gitar-amps---git-all-remotes-amplifiers)
+  - [Installation](#installation)
   - [List of amplifiers](#list-of-amplifiers)
     - [Open a merge request with --fetch origin --rebase origin/\<default\_upstream\_branch\>](#open-a-merge-request-with---fetch-origin---rebase-origindefault_upstream_branch)
     - [Gather all my `assigned` pull requests in a give state sorted by project](#gather-all-my-assigned-pull-requests-in-a-give-state-sorted-by-project)
@@ -11,6 +12,21 @@
 
 gitar amplifiers are a curated set of scripts that provide additional workflows
 by combining gitar <https://github.com/jordilin/gitar> commands.
+
+## Installation
+
+Copy the directory `./bin/gitar` over to any directory in your `$PATH`. Let's
+say `~/bin`, then (Using Linux OS as an example):
+
+```bash
+cp -r ./bin/gitar ~/bin
+```
+
+Adjust your `$PATH` to include `~/bin/gitar`:
+
+```bash
+export PATH=$PATH:~/bin/gitar
+```
 
 ## List of amplifiers
 
