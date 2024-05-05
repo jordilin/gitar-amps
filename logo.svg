@@ -24,12 +24,12 @@
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
      inkscape:zoom="5.7157127"
-     inkscape:cx="101.73709"
-     inkscape:cy="52.311937"
-     inkscape:window-width="1920"
-     inkscape:window-height="1011"
+     inkscape:cx="101.82457"
+     inkscape:cy="52.224458"
+     inkscape:window-width="3840"
+     inkscape:window-height="2083"
      inkscape:window-x="0"
-     inkscape:window-y="32"
+     inkscape:window-y="40"
      inkscape:window-maximized="1"
      inkscape:current-layer="layer1" />
   <defs
@@ -163,13 +163,13 @@
     <text
        xml:space="preserve"
        style="font-size:7.05556px;fill:#2b1100;fill-opacity:1;stroke-width:0.264583"
-       x="11.687782"
-       y="12.184135"
+       x="11.672282"
+       y="16.119394"
        id="text3"><tspan
          sodipodi:role="line"
          id="tspan3"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'TeX Gyre Chorus';-inkscape-font-specification:'TeX Gyre Chorus';fill:#f9f9f9;stroke-width:0.264583"
-         x="11.687782"
-         y="12.184135">gitar-amps</tspan></text>
+         x="11.672282"
+         y="16.119394">gitAR-Amps</tspan></text>
   </g>
 </svg>
