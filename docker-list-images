@@ -1,4 +1,23 @@
-#!/bin/bash
+#!/bin/sh
+
+# Retrieve all docker images metadata for a given repository.
+
+usage() {
+    echo "Usage: $0 <repository-id> <output-file>"
+    echo "  <repository-id>  The repository id to retrieve docker images metadata for"
+    echo "  <output-file>    The output file to write the metadata to"
+    exit 1
+}
+
+for arg in "$@"; do
+    if [ "$arg" = "--help" ] || [ "$arg" = "-h" ]; then
+        usage
+    fi
+done
+
+if [ "$#" -ne 2 ]; then
+    usage
+fi
 
 output_file=$2
 num_pages=$(gr dk list -r --tags --repo-id "$1" --num-pages)
@@ -19,6 +38,9 @@ else
     gr dk list --tags --repo-id "$1" --from-page "$from_page" --to-page "$to_page" -v --throttle 1000 --stream --no-headers | awk -F'|' '{print $1}' | while read -r tag; do
         echo "Retrieving docker image metadata for tag $tag" 1>&2
         gr dk image --repo-id "$1" "$tag" --no-headers | tee -a "$output_file"
-        sleep 1
+        # Sleep in between 1 and 2 seconds
+        throttle=$(awk 'BEGIN { srand(); print (rand() + 1) }' /dev/null)
+        echo "Sleeping for $throttle" 1>&2
+        sleep "$throttle"
     done
 fi
