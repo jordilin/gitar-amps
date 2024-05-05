@@ -6,6 +6,7 @@
   - [List of amplifiers](#list-of-amplifiers)
     - [Open a merge request with --fetch origin --rebase origin/\<default\_upstream\_branch\>](#open-a-merge-request-with---fetch-origin---rebase-origindefault_upstream_branch)
     - [Gather all my `assigned` pull requests in a give state sorted by project](#gather-all-my-assigned-pull-requests-in-a-give-state-sorted-by-project)
+    - [List all docker images in a Gitlab's project](#list-all-docker-images-in-a-gitlabs-project)
   - [License](#license)
 
 gitar amplifiers are a curated set of scripts that provide additional workflows
@@ -23,6 +24,20 @@ mr --title "New merge request"
 
 ```bash
 ./mr-all-assigned-sort-by-project opened
+```
+
+### List all docker images in a Gitlab's project
+
+Retrieve registry repository id in the current project where images are being stored.
+
+```bash
+gr dk list --repos
+```
+
+List all images in the registry repository with id 123.
+
+```bash
+./docker-list-images 123
 ```
 
 ## License

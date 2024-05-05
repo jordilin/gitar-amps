@@ -1,0 +1,24 @@
+#!/bin/bash
+
+output_file=$2
+num_pages=$(gr dk list -r --tags --repo-id "$1" --num-pages)
+
+from_page=1
+to_page="$num_pages"
+
+if [ "$num_pages" -eq 1 ]; then
+    # One page - pull all tags in one go
+    for tag in $(gr dk list --tags --repo-id "$1" --no-headers | awk '{print $1}'); do
+        echo "Retrieving docker image metadata for tag $tag" 1>&2
+        gr dk image --repo-id "$1" "$tag" --no-headers | tee -a "$output_file"
+        sleep 1
+    done
+else
+    echo "Number of pages found: $num_pages" 1>&2
+    echo "Retrieving pages $from_page to $to_page in verbose mode and throttling 1 sec" 1>&2
+    gr dk list --tags --repo-id "$1" --from-page "$from_page" --to-page "$to_page" -v --throttle 1000 --stream --no-headers | awk -F'|' '{print $1}' | while read -r tag; do
+        echo "Retrieving docker image metadata for tag $tag" 1>&2
+        gr dk image --repo-id "$1" "$tag" --no-headers | tee -a "$output_file"
+        sleep 1
+    done
+fi
