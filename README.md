@@ -5,6 +5,7 @@
 - [GitAR-Amps - Git All Remotes Amplifiers](#gitar-amps---git-all-remotes-amplifiers)
   - [Installation](#installation)
   - [List of amplifiers](#list-of-amplifiers)
+    - [Comment LGTM on a merge request and approve it (optionally merge)](#comment-lgtm-on-a-merge-request-and-approve-it-optionally-merge)
     - [Open a merge request with --fetch origin --rebase origin/\<default\_upstream\_branch\>](#open-a-merge-request-with---fetch-origin---rebase-origindefault_upstream_branch)
     - [Gather all my `assigned` pull requests in a give state sorted by project](#gather-all-my-assigned-pull-requests-in-a-give-state-sorted-by-project)
     - [List all docker images in a Gitlab's project](#list-all-docker-images-in-a-gitlabs-project)
@@ -29,6 +30,15 @@ export PATH=$PATH:~/bin/gitar
 ```
 
 ## List of amplifiers
+
+### Comment LGTM on a merge request and approve it (optionally merge)
+
+Comment "LGTM" on pull request timeline, approve it (Gitlab only) and
+automatically merge it.
+
+```bash
+lgtm --merge 123
+```
 
 ### Open a merge request with --fetch origin --rebase origin/<default_upstream_branch>
 
