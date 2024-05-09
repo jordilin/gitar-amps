@@ -31,7 +31,7 @@ fi
 
 remote_url=$(git remote -v | awk '/fetch/{print $2}')
 
-gr mr comment --id "$merge_id" "LGTM"
+gr mr comment create --id "$merge_id" "LGTM"
 
 if [ "${remote_url#*github}" = "$remote_url" ]; then
     # Not Github - assume Gitlab
