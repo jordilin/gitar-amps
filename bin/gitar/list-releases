@@ -1,0 +1,34 @@
+#!/bin/sh
+
+# List releases on a given repository sorted by version number (tag) in
+# ascending order.
+
+# Example usage:
+# ./list-releases github.com/kubernetes/kubernetes
+
+if [ "$#" -ne 1 ]; then
+  echo "Usage: $0 <repo>"
+  echo "Requires jq JSON processing tool to be installed"
+  exit 1
+fi
+
+num_pages=$(gr rl list -r --repo "$1" --num-pages)
+to_page="$num_pages"
+
+echo "Number of pages found: $num_pages" 1>&2
+
+gr rl list --repo "$1" --from-page=1 --to-page="$to_page" --throttle 1000 -v --stream --format=json | jq -n -r '
+  [inputs | {Tag, URL, "Created At"}] |
+  sort_by(
+    .Tag |
+    capture("^(?<prefix>v)?(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)(-(?<pre>.*))?") |
+    [
+      (.major | tonumber),
+      (.minor | tonumber),
+      (.patch | tonumber),
+      (.pre // "" | split("-") | map(
+        if test("^[0-9]+$") then tonumber else . end
+      ))
+    ]
+  ) | (.[] | [.Tag, .URL, ."Created At"] | @csv)
+' | sed "s/\"//g"

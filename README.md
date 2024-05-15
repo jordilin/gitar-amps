@@ -9,6 +9,7 @@
     - [Open a merge request with --fetch origin --rebase origin/\<default\_upstream\_branch\>](#open-a-merge-request-with---fetch-origin---rebase-origindefault_upstream_branch)
     - [Gather all my `assigned` pull requests in a give state sorted by project](#gather-all-my-assigned-pull-requests-in-a-give-state-sorted-by-project)
     - [List all docker images in a Gitlab's project](#list-all-docker-images-in-a-gitlabs-project)
+    - [List releases of a given Gitlab/Github repository sorted by version](#list-releases-of-a-given-gitlabgithub-repository-sorted-by-version)
   - [License](#license)
 
 gitar amplifiers are a curated set of scripts that provide additional workflows
@@ -64,6 +65,20 @@ List all images in the registry repository with id 123.
 
 ```bash
 ./docker-list-images 123
+```
+
+### List releases of a given Gitlab/Github repository sorted by version
+
+Outputs CSV with columns: `Tag,URL,Created_at`
+
+```bash
+./list-releases github.com/jordilin/gitar
+```
+
+Additionally, sort by date. Make use of datesorter command available at <https://github.com/jordilin/datesorter>
+
+```bash
+./list-releases github.com/jordilin/gitar | datesorter --column 2 --sort asc -
 ```
 
 ## License
