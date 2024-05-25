@@ -4,12 +4,14 @@
 
 - [GitAR-Amps - Git All Remotes Amplifiers](#gitar-amps---git-all-remotes-amplifiers)
   - [Installation](#installation)
+  - [Warning](#warning)
   - [List of amplifiers](#list-of-amplifiers)
     - [Comment LGTM on a merge request and approve it (optionally merge)](#comment-lgtm-on-a-merge-request-and-approve-it-optionally-merge)
     - [Open a merge request with --fetch origin --rebase origin/\<default\_upstream\_branch\>](#open-a-merge-request-with---fetch-origin---rebase-origindefault_upstream_branch)
     - [Gather all my `assigned` pull requests in a give state sorted by project](#gather-all-my-assigned-pull-requests-in-a-give-state-sorted-by-project)
     - [List all docker images in a Gitlab's project](#list-all-docker-images-in-a-gitlabs-project)
     - [List releases of a given Gitlab/Github repository sorted by version](#list-releases-of-a-given-gitlabgithub-repository-sorted-by-version)
+    - [List all assets from the last stable release](#list-all-assets-from-the-last-stable-release)
   - [License](#license)
 
 gitar amplifiers are a curated set of scripts that provide additional workflows
@@ -29,6 +31,15 @@ Adjust your `$PATH` to include `~/bin/gitar`:
 ```bash
 export PATH=$PATH:~/bin/gitar
 ```
+
+## Warning
+
+List operations can involve multiple REST API calls. In those cases, the scripts
+run gitar with throttling of 1 second or more in between calls. Also, the calls
+are sequential and gitar monitors the rate limit response headers to avoid
+hitting those. It is always a good idea to do a pre-check with `--num-pages` and
+`--num-resources` to have a general idea on how much data is going to be
+queried.
 
 ## List of amplifiers
 
@@ -72,13 +83,22 @@ List all images in the registry repository with id 123.
 Outputs CSV with columns: `Tag,URL,Created_at`
 
 ```bash
-./list-releases github.com/jordilin/gitar
+./list-all-releases github.com/jordilin/gitar
 ```
 
 Additionally, sort by date. Make use of datesorter command available at <https://github.com/jordilin/datesorter>
 
 ```bash
-./list-releases github.com/jordilin/gitar | datesorter --column 2 --sort asc -
+./list-all-releases github.com/jordilin/gitar | datesorter --column 2 --sort asc -
+```
+
+### List all assets from the last stable release
+
+The last stable release is the one that is not marked as `Pre-release` in Github
+or as `Upcoming Release` in Gitlab.
+
+```bash
+./last-release-assets github.com/jordilin/gitar
 ```
 
 ## License
