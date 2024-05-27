@@ -1,8 +1,30 @@
 #!/bin/sh
 
+# This script is used to get the latest release assets for a given repository.
+# Usage
+
+usage() {
+    echo "Usage: $0 <repository>"
+    echo "Example: $0 github.com/owner/repo"
+    echo "Example: $0 gitlab.com/owner/repo"
+    exit 1
+}
+
+if [ $# -ne 1 ]; then
+    usage
+fi
+
 # Select the last stable release.
 
-last_release_id=$(gr rl list -r --repo "$1" --page=1 --format json | jq -c 'select(.Prerelease == "false")' | tail -n 1 | jq -r '.ID')
+# "$1" in format github.com/owner/repo
+domain=$(echo "$1" | cut -d/ -f1)
+
+if [ "${domain#*github}" = "$domain" ]; then
+    # Gitlab - gather last tag
+    last_release_id=$(gr rl list -r --repo "$1" --page=1 --format json | jq -c 'select(.Prerelease == "false")' | tail -n 1 | jq -r '.Tag')
+else
+    last_release_id=$(gr rl list -r --repo "$1" --page=1 --format json | jq -c 'select(.Prerelease == "false")' | tail -n 1 | jq -r '.ID')
+fi
 
 if [ -z "$last_release_id" ]; then
     echo "No release found"
