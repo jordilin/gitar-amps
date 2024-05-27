@@ -61,7 +61,7 @@ mr --title "New merge request"
 ### Gather all my `assigned` pull requests in a give state sorted by project
 
 ```bash
-./mr-all-assigned-sort-by-project opened
+mr-all-assigned-sort-by-project opened
 ```
 
 ### List all docker images in a Gitlab's project
@@ -75,7 +75,7 @@ gr dk list --repos
 List all images in the registry repository with id 123.
 
 ```bash
-./docker-list-images 123
+docker-list-images 123
 ```
 
 ### List releases of a given Gitlab/Github repository sorted by version
@@ -83,13 +83,13 @@ List all images in the registry repository with id 123.
 Outputs CSV with columns: `Tag,URL,Created_at`
 
 ```bash
-./list-all-releases github.com/jordilin/gitar
+list-all-releases github.com/jordilin/gitar
 ```
 
 Additionally, sort by date. Make use of datesorter command available at <https://github.com/jordilin/datesorter>
 
 ```bash
-./list-all-releases github.com/jordilin/gitar | datesorter --column 2 --sort asc -
+list-all-releases github.com/jordilin/gitar | datesorter --column 2 --sort asc -
 ```
 
 ### List all assets from the last stable release
@@ -98,7 +98,7 @@ The last stable release is the one that is not marked as `Pre-release` in Github
 or as `Upcoming Release` in Gitlab.
 
 ```bash
-./last-release-assets github.com/jordilin/gitar
+list-last-assets github.com/jordilin/gitar
 ```
 
 ## License
