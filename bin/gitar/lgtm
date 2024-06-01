@@ -4,6 +4,7 @@
 
 usage() {
     echo "Looks good to me (LGTM) script. Comment LGTM, approve and merge PRs."
+    echo
     echo "Usage: $0 --merge <id>"
     echo "  --merge: Automatically merge (optional)"
     echo "  id: Merge request ID"

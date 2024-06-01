@@ -6,6 +6,26 @@
 # Example usage:
 # ./list-releases github.com/kubernetes/kubernetes
 
+usage() {
+  echo "List releases on a given repository sorted by version number (tag) in"
+  echo "ascending order."
+  echo
+  echo "Usage: $0 <repo>"
+  echo
+  echo "Options:"
+  echo "  -h, --help    Display this help and exit"
+  echo
+  echo "Example:"
+  echo "  $0 github.com/kubernetes/kubernetes"
+  exit 0
+}
+
+for arg in "$@"; do
+  if [ "$arg" = "--help" ] || [ "$arg" = "-h" ]; then
+    usage
+  fi
+done
+
 if [ "$#" -ne 1 ]; then
   echo "Usage: $0 <repo>"
   echo "Requires jq JSON processing tool to be installed"
