@@ -8,6 +8,12 @@ usage() {
     exit 1
 }
 
+for arg in "$@"; do
+    if [ "$arg" = "--help" ] || [ "$arg" = "-h" ]; then
+        usage
+    fi
+done
+
 if [ $# -eq 0 ]; then
     usage
 fi

@@ -3,6 +3,8 @@
 # Retrieve all docker images metadata for a given repository.
 
 usage() {
+    echo "Retrieve all docker images metadata for a given repository"
+    echo
     echo "Usage: $0 <repository-id> <output-file>"
     echo "  <repository-id>  The repository id to retrieve docker images metadata for"
     echo "  <output-file>    The output file to write the metadata to"

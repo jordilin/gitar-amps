@@ -4,11 +4,19 @@
 # Usage
 
 usage() {
+    echo "Get the latest stable release assets for a given repository."
+    echo
     echo "Usage: $0 <repository>"
     echo "Example: $0 github.com/owner/repo"
     echo "Example: $0 gitlab.com/owner/repo"
     exit 1
 }
+
+for arg in "$@"; do
+    if [ "$arg" = "--help" ] || [ "$arg" = "-h" ]; then
+        usage
+    fi
+done
 
 if [ $# -ne 1 ]; then
     usage

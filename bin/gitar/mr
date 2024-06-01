@@ -2,5 +2,21 @@
 
 # Open a merge request in `origin` with fetch and rebase
 
+usage() {
+    echo "Open a merge request in origin with fetch and rebase"
+    echo
+    echo "Usage: $0 [options] <title>"
+    echo
+    echo "Options:"
+    echo "  -h, --help  Display this message"
+    exit 1
+}
+
+for arg in "$@"; do
+    if [ "$arg" = "--help" ] || [ "$arg" = "-h" ]; then
+        usage
+    fi
+done
+
 default_branch=$(gr pj info --no-headers | awk -F'|' '{print $2}')
 gr mr create --fetch origin --rebase "origin/$default_branch" "$@"
