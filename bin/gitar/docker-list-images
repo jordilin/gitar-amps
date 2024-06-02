@@ -5,10 +5,10 @@
 usage() {
     echo "Retrieve all docker images metadata for a given repository"
     echo
-    echo "Usage: $0 <repository-id> <output-file>"
+    echo "Usage: docker-list-images <repository-id> <output-file>"
     echo "  <repository-id>  The repository id to retrieve docker images metadata for"
     echo "  <output-file>    The output file to write the metadata to"
-    exit 1
+    exit 0
 }
 
 for arg in "$@"; do

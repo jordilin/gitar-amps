@@ -3,9 +3,9 @@
 # Gather all my assigned Merge requests in the given state sorted by project
 
 usage() {
-    echo "Usage: $0 <state>"
+    echo "Usage: mr-all-assigned-sort-by-project <state>"
     echo "  state: opened, closed, locked, merged"
-    exit 1
+    exit 0
 }
 
 for arg in "$@"; do

@@ -3,13 +3,14 @@
 # Open a merge request in `origin` with fetch and rebase
 
 usage() {
-    echo "Open a merge request in origin with fetch and rebase"
+    echo "Uses gr mr create with --fetch and --rebase to open a merge request in origin"
+    echo "Accepts all the gr mr create arguments"
     echo
-    echo "Usage: $0 [options] <title>"
+    echo "Usage: mr [options]"
     echo
     echo "Options:"
-    echo "  -h, --help  Display this message"
-    exit 1
+    echo "  -h, --help  Display this help and exit"
+    exit 0
 }
 
 for arg in "$@"; do

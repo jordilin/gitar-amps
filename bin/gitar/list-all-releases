@@ -10,13 +10,13 @@ usage() {
   echo "List releases on a given repository sorted by version number (tag) in"
   echo "ascending order."
   echo
-  echo "Usage: $0 <repo>"
+  echo "Usage: list-all-releases <repo>"
   echo
   echo "Options:"
   echo "  -h, --help    Display this help and exit"
   echo
   echo "Example:"
-  echo "  $0 github.com/kubernetes/kubernetes"
+  echo "  list-all-releases github.com/jordilin/gitar"
   exit 0
 }
 
