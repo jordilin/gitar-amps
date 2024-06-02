@@ -5,10 +5,10 @@
 usage() {
     echo "Looks good to me (LGTM) script. Comment LGTM, approve and merge PRs."
     echo
-    echo "Usage: $0 --merge <id>"
+    echo "Usage: lgtm --merge <id>"
     echo "  --merge: Automatically merge (optional)"
     echo "  id: Merge request ID"
-    exit 1
+    exit 0
 }
 
 for arg in "$@"; do

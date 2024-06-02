@@ -6,10 +6,13 @@
 usage() {
     echo "Get the latest stable release assets for a given repository."
     echo
-    echo "Usage: $0 <repository>"
-    echo "Example: $0 github.com/owner/repo"
-    echo "Example: $0 gitlab.com/owner/repo"
-    exit 1
+    echo "Usage: list-last-assets <repository>"
+    echo
+    echo "Options:"
+    echo "  -h, --help    Display this help and exit"
+    echo
+    echo "Example: list-last-assets github.com/jordilin/gitar"
+    exit 0
 }
 
 for arg in "$@"; do
