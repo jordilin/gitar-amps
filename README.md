@@ -7,7 +7,7 @@
   - [Warning](#warning)
   - [List of amplifiers](#list-of-amplifiers)
     - [Comment LGTM on a merge request and approve it (optionally merge)](#comment-lgtm-on-a-merge-request-and-approve-it-optionally-merge)
-    - [Open a merge request with --fetch origin --rebase origin/\<default\_upstream\_branch\>](#open-a-merge-request-with---fetch-origin---rebase-origindefault_upstream_branch)
+    - [Quickly open a merge request with --fetch, --rebase, --auto and -y](#quickly-open-a-merge-request-with---fetch---rebase---auto-and--y)
     - [Gather all my `assigned` pull requests in a give state sorted by project](#gather-all-my-assigned-pull-requests-in-a-give-state-sorted-by-project)
     - [List all docker images in a Gitlab's project](#list-all-docker-images-in-a-gitlabs-project)
     - [List releases of a given Gitlab/Github repository sorted by version](#list-releases-of-a-given-gitlabgithub-repository-sorted-by-version)
@@ -52,10 +52,13 @@ automatically merge it.
 lgtm --merge 123
 ```
 
-### Open a merge request with --fetch origin --rebase origin/<default_upstream_branch>
+### Quickly open a merge request with --fetch, --rebase, --auto and -y
+
+Good for opening quick merge requests where last commit can be used for its
+title and description.
 
 ```bash
-mr --title "New merge request"
+auto-mr
 ```
 
 ### Gather all my `assigned` pull requests in a give state sorted by project
