@@ -3,7 +3,7 @@
 # Open a merge request in `origin` with fetch and rebase
 
 usage() {
-    echo "Uses gr mr create with --fetch, --rebase and --auto options"
+    echo "Uses gr mr create with --fetch, --rebase, --auto and -y options"
     echo
     echo "Usage: mr [options]"
     echo
