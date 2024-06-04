@@ -3,8 +3,7 @@
 # Open a merge request in `origin` with fetch and rebase
 
 usage() {
-    echo "Uses gr mr create with --fetch and --rebase to open a merge request in origin"
-    echo "Accepts all the gr mr create arguments"
+    echo "Uses gr mr create with --fetch, --rebase and --auto options"
     echo
     echo "Usage: mr [options]"
     echo
@@ -20,4 +19,4 @@ for arg in "$@"; do
 done
 
 default_branch=$(gr pj info --no-headers | awk -F'|' '{print $2}')
-gr mr create --fetch origin --rebase "origin/$default_branch" "$@"
+gr mr create --fetch origin --rebase "origin/$default_branch" --auto -y
