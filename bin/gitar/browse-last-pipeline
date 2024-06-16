@@ -1,0 +1,26 @@
+#!/bin/sh
+
+usage() {
+    echo "Open the last pipeline in the browser"
+    echo
+    echo "Usage: browse-last-pipeline"
+    echo
+    echo "Options:"
+    echo "  -h, --help    Display this help and exit"
+    exit 0
+}
+
+for arg in "$@"; do
+    if [ "$arg" = "--help" ] || [ "$arg" = "-h" ]; then
+        usage
+    fi
+done
+
+last_pipeline_id=$(gr pp list --page=1 -r --format json | jq -r '.ID' | tail -1)
+
+if [ -z "$last_pipeline_id" ]; then
+    echo "No pipelines found"
+    exit 1
+fi
+
+gr br pp "$last_pipeline_id"
