@@ -16,7 +16,7 @@ for arg in "$@"; do
     fi
 done
 
-last_pipeline_id=$(gr pp list --page=1 -r --format json | jq -r '.ID' | tail -1)
+last_pipeline_id=$(gr pp list --page=1 -r --format json | jq -r '.id' | tail -1)
 
 if [ -z "$last_pipeline_id" ]; then
     echo "No pipelines found"

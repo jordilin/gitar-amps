@@ -32,9 +32,9 @@ domain=$(echo "$1" | cut -d/ -f1)
 
 if [ "${domain#*github}" = "$domain" ]; then
     # Gitlab - gather last tag
-    last_release_id=$(gr rl list -r --repo "$1" --page=1 --format json | jq -c 'select(.Prerelease == "false")' | tail -n 1 | jq -r '.Tag')
+    last_release_id=$(gr rl list -r --repo "$1" --page=1 --format json | jq -c 'select(.prerelease == "false")' | tail -n 1 | jq -r '.tag')
 else
-    last_release_id=$(gr rl list -r --repo "$1" --page=1 --format json | jq -c 'select(.Prerelease == "false")' | tail -n 1 | jq -r '.ID')
+    last_release_id=$(gr rl list -r --repo "$1" --page=1 --format json | jq -c 'select(.prerelease == "false")' | tail -n 1 | jq -r '.id')
 fi
 
 if [ -z "$last_release_id" ]; then
@@ -49,5 +49,5 @@ if [ "$assets" = "No resources found." ]; then
     echo "No assets found"
     exit 1
 else
-    echo "$assets" | jq -r '[.URL] | @csv' | sed 's/"//g'
+    echo "$assets" | jq -r '[.url] | @csv' | sed 's/"//g'
 fi

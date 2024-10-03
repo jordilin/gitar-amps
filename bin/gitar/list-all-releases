@@ -38,7 +38,7 @@ to_page="$num_pages"
 echo "Number of pages found: $num_pages" 1>&2
 
 gr rl list --repo "$1" --from-page=1 --to-page="$to_page" --throttle 1000 -v --stream --format=json | jq -n -r '
-  [inputs | {Tag, URL, "Created At"}] |
+  [inputs | {tag, url, "created at"}] |
   sort_by(
     .Tag |
     capture("^(?<prefix>v)?(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)(-(?<pre>.*))?") |
@@ -50,5 +50,5 @@ gr rl list --repo "$1" --from-page=1 --to-page="$to_page" --throttle 1000 -v --s
         if test("^[0-9]+$") then tonumber else . end
       ))
     ]
-  ) | (.[] | [.Tag, .URL, ."Created At"] | @csv)
+  ) | (.[] | [.tag, .url, ."created at"] | @csv)
 ' | sed "s/\"//g"
